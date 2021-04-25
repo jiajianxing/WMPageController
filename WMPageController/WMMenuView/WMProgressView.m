@@ -126,6 +126,8 @@
         return;
     }
     if (self.image) {
+        CGSize imageSize = self.image.size;
+        barframe = CGRectMake(startX + (width - imageSize.width)*0.5, lineWidth/2.0, imageSize.width, height-lineWidth);
         CGContextDrawImage(ctx, barframe, self.image.CGImage);
     } else {
         CGContextSetFillColorWithColor(ctx, self.color);
