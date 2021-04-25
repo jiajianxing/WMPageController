@@ -242,7 +242,7 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
  */
 @property (nonatomic, nullable, strong) NSArray *progressViewWidths;
 
-/// 定制进度条，若每个进度条长度相同，可设置该属性
+/// 定制进度条，若每个进度条长度相同，可设置该属性(设置下标图片时需给定高度,避免图片压缩)
 @property (nonatomic, assign) CGFloat progressWidth;
 
 /// 调皮效果，用于实现腾讯视频新效果，请设置一个较小的 progressWidth
@@ -283,7 +283,7 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
  */
 @property (nonatomic, assign) BOOL startDragging;
 
-/** 下划线进度条的高度 */
+/** 下划线进度条的高度 (设置下标图片时需给定高度,避免图片压缩)*/
 @property (nonatomic, assign) CGFloat progressHeight;
 
 /**
