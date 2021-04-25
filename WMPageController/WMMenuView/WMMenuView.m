@@ -447,7 +447,7 @@
                         isTriangle:(self.style == WMMenuViewStyleTriangle)
                          hasBorder:(self.style == WMMenuViewStyleSegmented)
                             hollow:(self.style == WMMenuViewStyleFloodHollow)
-                      cornerRadius:self.progressViewCornerRadius];
+                      cornerRadius:self.progressViewCornerRadius lineImage:self.lineImage];
 }
 
 - (void)deselectedItemsIfNeeded {
@@ -563,13 +563,14 @@
 }
 
 // MARK:Progress View
-- (void)addProgressViewWithFrame:(CGRect)frame isTriangle:(BOOL)isTriangle hasBorder:(BOOL)hasBorder hollow:(BOOL)isHollow cornerRadius:(CGFloat)cornerRadius {
+- (void)addProgressViewWithFrame:(CGRect)frame isTriangle:(BOOL)isTriangle hasBorder:(BOOL)hasBorder hollow:(BOOL)isHollow cornerRadius:(CGFloat)cornerRadius lineImage:(UIImage *)lineImage{
     WMProgressView *pView = [[WMProgressView alloc] initWithFrame:frame];
     pView.itemFrames = [self convertProgressWidthsToFrames];
     pView.color = self.lineColor.CGColor;
     pView.isTriangle = isTriangle;
     pView.hasBorder = hasBorder;
     pView.hollow = isHollow;
+    pView.image = lineImage;
     pView.cornerRadius = cornerRadius;
     pView.naughty = self.progressViewIsNaughty;
     pView.speedFactor = self.speedFactor;

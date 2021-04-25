@@ -82,7 +82,7 @@
     CGFloat currentWidth = currentFrame.size.width;
     int nextIndex = index + 1 < self.itemFrames.count ? index + 1 : index;
     CGFloat nextWidth = [self.itemFrames[nextIndex] CGRectValue].size.width;
-
+    
     CGFloat currentX = currentFrame.origin.x;
     CGFloat nextX = [self.itemFrames[nextIndex] CGRectValue].origin.x;
     CGFloat startX = currentX + (nextX - currentX) * rate;
@@ -116,8 +116,8 @@
         CGContextFillPath(ctx);
         return;
     }
-    
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(startX, lineWidth / 2.0, width, height - lineWidth) cornerRadius:self.cornerRadius];
+    CGRect barframe = CGRectMake(startX, lineWidth / 2.0, width, height - lineWidth);
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:barframe cornerRadius:self.cornerRadius];
     CGContextAddPath(ctx, path.CGPath);
     
     if (self.hollow) {
@@ -125,8 +125,12 @@
         CGContextStrokePath(ctx);
         return;
     }
-    CGContextSetFillColorWithColor(ctx, self.color);
-    CGContextFillPath(ctx);
+    if (self.image) {
+        CGContextDrawImage(ctx, barframe, self.image.CGImage);
+    } else {
+        CGContextSetFillColorWithColor(ctx, self.color);
+        CGContextFillPath(ctx);
+    }
     
     if (self.hasBorder) {
         // 计算点
