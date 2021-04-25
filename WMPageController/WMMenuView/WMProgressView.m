@@ -126,6 +126,8 @@
         return;
     }
     if (self.image) {
+        CGContextTranslateCTM(ctx, 0, height);
+        CGContextScaleCTM(ctx, 1.0, -1.0);
         CGContextDrawImage(ctx, barframe, self.image.CGImage);
     } else {
         CGContextSetFillColorWithColor(ctx, self.color);
